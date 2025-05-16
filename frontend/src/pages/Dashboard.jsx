@@ -23,7 +23,7 @@ function Dashboard({ user }) {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navbar user={user} />
+      {/* <Navbar user={user} /> */}
       <div className="p-6 max-w-4xl mx-auto">
         <h1 className="text-2xl font-bold text-gray-800 mb-6">
           Welcome, {userData?.displayName || user?.name || "User"}! 👋

@@ -5,7 +5,12 @@ function Navbar({ user }) {
     <div className="bg-white shadow-md">
       <div className="p-6 max-w-4xl mx-auto">
         <div className="flex justify-between items-center">
-          <h1 className="text-xl font-bold">Task Manager</h1>
+          <Link
+            to="/dashboard"
+            className="text-xl font-bold hover:text-blue-600 transition-colors duration-200"
+          >
+            Task Manager
+          </Link>
           <div className="flex gap-4">
             <Link
               to="/add-task"
