@@ -13,6 +13,7 @@ import AddTask from "./pages/AddTask";
 import Profile from "./pages/Profile";
 import TaskList from "./pages/TaskList";
 import EditTask from "./pages/EditTask";
+import Layout from "./components/Layout";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -44,18 +45,35 @@ function App() {
         />
         <Route
           path="/dashboard"
-          element={user ? <Dashboard user={user} /> : <Navigate to="/login" />}
+          element={
+            user ? (
+              <Layout user={user}>
+                <Dashboard user={user} />
+              </Layout>
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
         />
-        <Route path="*" element={<NotFound />} />
         <Route
           path="/add-task"
-          element={user ? <AddTask /> : <Navigate to="/" />}
+          element={
+            user ? (
+              <Layout user={user}>
+                <AddTask />
+              </Layout>
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
         />
         <Route
           path="/profile"
           element={
             user ? (
-              <Profile user={user} onLogout={handleLogout} />
+              <Layout user={user}>
+                <Profile user={user} onLogout={handleLogout} />
+              </Layout>
             ) : (
               <Navigate to="/login" />
             )
@@ -63,12 +81,29 @@ function App() {
         />
         <Route
           path="/tasks"
-          element={user ? <TaskList /> : <Navigate to="/" />}
+          element={
+            user ? (
+              <Layout user={user}>
+                <TaskList />
+              </Layout>
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
         />
         <Route
           path="/edit-task/:id"
-          element={user ? <EditTask /> : <Navigate to="/" />}
+          element={
+            user ? (
+              <Layout user={user}>
+                <EditTask />
+              </Layout>
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
         />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
