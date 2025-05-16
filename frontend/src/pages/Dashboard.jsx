@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import TaskStatsCard from "../components/TaskStatCard";
-import Navbar from "../components/Navbar";
+// import Navbar from "../components/Navbar";
 
 function Dashboard({ user }) {
   const [tasks, setTasks] = useState([]);
