@@ -25,6 +25,10 @@ function App() {
       .catch(() => setUser(null));
   }, []);
 
+  const handleLogout = () => {
+    setUser(null); // Clear user state on logout
+  };
+
   return (
     <Router>
       <Routes>
@@ -49,7 +53,13 @@ function App() {
         />
         <Route
           path="/profile"
-          element={user ? <Profile user={user} /> : <Navigate to="/" />}
+          element={
+            user ? (
+              <Profile user={user} onLogout={handleLogout} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
         />
         <Route
           path="/tasks"

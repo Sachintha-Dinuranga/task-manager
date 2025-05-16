@@ -1,11 +1,17 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function Profile({ user }) {
+function Profile({ user, onLogout }) {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  const userData = user?.user;
+
+  useEffect(() => {
+    // console.log("User data in Profile:", userData);
+  }, [userData]);
 
   const handleLogout = async () => {
     try {
@@ -25,9 +31,8 @@ function Profile({ user }) {
       );
 
       if (response.status === 200) {
-        // Clear any local storage if you're using it
         localStorage.clear();
-        // Navigate to login page
+        onLogout(); // Call the onLogout function to update App state
         navigate("/login", { replace: true });
       }
     } catch (err) {
@@ -66,18 +71,26 @@ function Profile({ user }) {
         </button>
         <div className="relative">
           <img
-            src={user.photo}
-            alt={user.displayName}
-            className="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-white shadow-lg"
+            src={
+              userData?.photo?.[0]?.value ||
+              userData?.picture ||
+              "/default-avatar.png"
+            }
+            alt={userData?.displayName || userData?.name || "User"}
+            className="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-white shadow-lg object-cover"
           />
           <div className="absolute bottom-4 right-1/2 transform translate-x-16 bg-green-500 w-4 h-4 rounded-full border-2 border-white"></div>
         </div>
 
         <div className="text-center space-y-2">
           <h2 className="text-2xl font-bold text-gray-800">
-            {user.displayName}
+            {userData?.displayName || userData?.name || "User"}
           </h2>
-          <p className="text-gray-600">{user.email}</p>
+          <p className="text-gray-600">
+            {userData?.emails?.[0]?.value ||
+              userData?.email ||
+              "No email available"}
+          </p>
         </div>
 
         {error && (
