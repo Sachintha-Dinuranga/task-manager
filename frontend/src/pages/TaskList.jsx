@@ -4,6 +4,7 @@ import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import { Link, useNavigate } from "react-router-dom";
 import TaskRow from "../components/TaskRow";
+import toast from "react-hot-toast";
 
 function TaskList() {
   const navigate = useNavigate();
@@ -20,14 +21,14 @@ function TaskList() {
   }, []);
 
   const handleDelete = async (id) => {
-    if (!confirm("Are you sure you want to delete this task?")) return;
     try {
       await axios.delete(`http://localhost:5000/api/tasks/${id}`, {
         withCredentials: true,
       });
-      setTasks((prev) => prev.filter((task) => task._id !== id));
+      setTasks(tasks.filter((task) => task._id !== id));
+      toast.success("Task deleted successfully!");
     } catch (err) {
-      alert("Failed to delete task.");
+      toast.error("Failed to delete task");
     }
   };
 

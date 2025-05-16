@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 function EditTask() {
   const { id } = useParams();
@@ -52,6 +53,10 @@ function EditTask() {
       await axios.put(`http://localhost:5000/api/tasks/${id}`, task, {
         withCredentials: true,
       });
+      toast.success("Task updated successfully!");
+      setTimeout(() => {
+        navigate("/tasks");
+      }, 1000);
       navigate("/tasks");
     } catch (err) {
       setError(err.response?.data?.message || "Failed to update task");

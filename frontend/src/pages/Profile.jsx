@@ -71,11 +71,7 @@ function Profile({ user, onLogout }) {
         </button>
         <div className="relative">
           <img
-            src={
-              userData?.photo?.[0]?.value ||
-              userData?.picture ||
-              "/default-avatar.png"
-            }
+            src={userData?.photo || "/default-avatar.png"}
             alt={userData?.displayName || userData?.name || "User"}
             className="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-white shadow-lg object-cover"
           />

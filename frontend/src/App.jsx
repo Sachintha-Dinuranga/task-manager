@@ -15,6 +15,7 @@ import TaskList from "./pages/TaskList";
 import EditTask from "./pages/EditTask";
 import Layout from "./components/Layout";
 import TaskDetails from "./pages/TaskDetails";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -33,6 +34,26 @@ function App() {
 
   return (
     <Router>
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          duration: 2000,
+          style: {
+            background: "#333",
+            color: "#fff",
+          },
+          success: {
+            style: {
+              background: "green",
+            },
+          },
+          error: {
+            style: {
+              background: "red",
+            },
+          },
+        }}
+      />
       <Routes>
         <Route
           path="/"
