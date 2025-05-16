@@ -14,6 +14,7 @@ import Profile from "./pages/Profile";
 import TaskList from "./pages/TaskList";
 import EditTask from "./pages/EditTask";
 import Layout from "./components/Layout";
+import TaskDetails from "./pages/TaskDetails";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -103,6 +104,19 @@ function App() {
             )
           }
         />
+        <Route
+          path="/task/:id"
+          element={
+            user ? (
+              <Layout user={user}>
+                <TaskDetails />
+              </Layout>
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
