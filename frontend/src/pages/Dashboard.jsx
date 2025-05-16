@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import TaskStatsCard from "../components/TaskStatCard";
-// import Navbar from "../components/Navbar";
 
 function Dashboard({ user }) {
   const [tasks, setTasks] = useState([]);
@@ -25,7 +24,6 @@ function Dashboard({ user }) {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* <Navbar user={user} /> */}
       <div className="p-6 max-w-4xl mx-auto">
         <h1 className="text-2xl font-bold text-gray-800 mb-6">
           Welcome, {userData?.displayName || user?.name || "User"}! 👋
