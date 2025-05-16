@@ -11,7 +11,9 @@ function TaskDetails() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/tasks/${id}`, { withCredentials: true })
+      .get(`https://task-manager-1-tcjh.onrender.com/api/tasks/${id}`, {
+        withCredentials: true,
+      })
       .then((res) => {
         setTask(res.data);
         setLoading(false);

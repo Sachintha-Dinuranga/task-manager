@@ -11,7 +11,9 @@ function Dashboard({ user }) {
   useEffect(() => {
     console.log("Current user:", user);
     axios
-      .get("http://localhost:5000/api/tasks", { withCredentials: true })
+      .get("https://task-manager-1-tcjh.onrender.com/api/tasks", {
+        withCredentials: true,
+      })
       .then((res) => setTasks(res.data))
       .catch((err) => console.error("Failed to fetch tasks:", err));
   }, []);

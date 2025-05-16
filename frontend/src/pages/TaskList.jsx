@@ -14,7 +14,9 @@ function TaskList() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/tasks", { withCredentials: true })
+      .get("https://task-manager-1-tcjh.onrender.com/api/tasks", {
+        withCredentials: true,
+      })
       .then((res) => setTasks(res.data))
       .catch((err) => console.error("Failed to load tasks", err));
   }, []);
@@ -22,9 +24,12 @@ function TaskList() {
   const handleDelete = async (id) => {
     if (!confirm("Are you sure you want to delete this task?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/tasks/${id}`, {
-        withCredentials: true,
-      });
+      await axios.delete(
+        `https://task-manager-1-tcjh.onrender.com/api/tasks/${id}`,
+        {
+          withCredentials: true,
+        }
+      );
       setTasks((prev) => prev.filter((task) => task._id !== id));
     } catch (err) {
       alert("Failed to delete task.");

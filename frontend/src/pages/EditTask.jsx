@@ -18,7 +18,9 @@ function EditTask() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/tasks/${id}`, { withCredentials: true })
+      .get(`https://task-manager-1-tcjh.onrender.com/api/tasks/${id}`, {
+        withCredentials: true,
+      })
       .then((res) => {
         const data = res.data;
         setTask({
@@ -49,9 +51,13 @@ function EditTask() {
     }
 
     try {
-      await axios.put(`http://localhost:5000/api/tasks/${id}`, task, {
-        withCredentials: true,
-      });
+      await axios.put(
+        `https://task-manager-1-tcjh.onrender.com/api/tasks/${id}`,
+        task,
+        {
+          withCredentials: true,
+        }
+      );
       navigate("/tasks");
     } catch (err) {
       setError(err.response?.data?.message || "Failed to update task");

@@ -18,6 +18,11 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+    cookie: {
+      httpOnly: true,
+      secure: true, // ✅ Must be true in production (Vercel uses HTTPS)
+      sameSite: "None", // ✅ Required for cross-origin cookies
+    },
   })
 );
 

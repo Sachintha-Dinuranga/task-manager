@@ -28,7 +28,7 @@ function AddTask() {
     }
 
     try {
-      await axios.post("http://localhost:5000/api/tasks", task, {
+      await axios.post("https://task-manager-1-tcjh.onrender.com/api/tasks", task, {
         withCredentials: true,
       });
       navigate("/dashboard");

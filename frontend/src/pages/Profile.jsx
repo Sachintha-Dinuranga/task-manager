@@ -19,7 +19,7 @@ function Profile({ user, onLogout }) {
       setError(null);
 
       const response = await axios.post(
-        "http://localhost:5000/auth/logout",
+        "https://task-manager-1-tcjh.onrender.com/auth/logout",
         {},
         {
           withCredentials: true,
