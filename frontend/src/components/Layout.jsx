@@ -1,3 +1,4 @@
+//import navbar
 import Navbar from "./Navbar";
 
 function Layout({ user, children }) {
